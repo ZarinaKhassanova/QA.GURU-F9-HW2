@@ -13,6 +13,6 @@ public class TestAutomationPractice {
         open("https://demoqa.com/text-box");
         System.out.println("Проверяем наличие Text Box");
         $x("//div[contains(text(),'Text Box')]").shouldBe(Condition.visible);
-        System.out.println("Успешно");
+        System.out.println("Тест выполнен успешно");
     }
 }
