@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 /**
- TestAutomationPractice
+ AutomationPractice first test
  */
 public class TestElementsTextBox {
 
