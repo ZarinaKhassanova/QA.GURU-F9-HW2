@@ -1,5 +1,6 @@
 package com.demoqa;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
@@ -9,6 +10,11 @@ import static com.codeborne.selenide.Selenide.*;
  AutomationPractice first test
  */
 public class TestElementsTextBox {
+
+    @BeforeAll
+    static void settings(){
+        System.setProperty("webdriver.chrome.driver","src/tools/chromedriver.exe");
+    }
 
     @Test
     void fillFormTest() {
