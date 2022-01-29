@@ -2,6 +2,7 @@ package com.demoqa;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
+import static java.util.ResourceBundle.clearCache;
 
 /**
  AutomationPractice second test
@@ -29,6 +31,11 @@ public class TestPracticeForm {
     void openBrowser() {
         //Открываем браузер
         open("https://demoqa.com/automation-practice-form");
+    }
+
+    @AfterAll
+    static void clearBrowserCache(){
+        clearCache();
     }
 
     @Test
@@ -88,7 +95,7 @@ public class TestPracticeForm {
         $(".table-responsive").$(byText("Goa, India"));
         $(".table-responsive").$(byText("Haryana Panipat"));
 
-        System.out.println("Accepted form");
+        System.out.println("Accepted fill form");
         //endregion
     }
 }
