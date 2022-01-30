@@ -2,19 +2,16 @@ package com.demoqa;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.$;
-import static java.util.ResourceBundle.clearCache;
 
 /**
  AutomationPractice second test
@@ -24,7 +21,7 @@ public class TestPracticeForm {
     @BeforeAll
     static void settings() {
         System.setProperty("webdriver.chrome.driver","src/tools/chromedriver.exe");
-        Configuration.startMaximized = true;
+        Configuration.browserSize = "1440*900";
     }
 
     @BeforeEach
@@ -33,9 +30,10 @@ public class TestPracticeForm {
         open("https://demoqa.com/automation-practice-form");
     }
 
-    @AfterAll
-    static void clearBrowserCache(){
-        clearCache();
+    @AfterEach
+    void closeBrowser(){
+        //После каждого теста закрываем веб-дайвер
+        closeWebDriver();
     }
 
     @Test
@@ -43,7 +41,7 @@ public class TestPracticeForm {
 
         //region Student Registration Form
         //Проверяем, что страница загрузилась
-        $(byText("Student Registration Form")).shouldBe(Condition.visible, Duration.ofMillis(3000));
+        $(byText("Student Registration Form")).shouldBe(Condition.visible);
         //Заполняем поле "First Name"
         $("#firstName").setValue("Zarina");
         //Заполняем поле "Last Name"
@@ -81,21 +79,21 @@ public class TestPracticeForm {
 
         //region Check result
         //Проверяем, что форма с таблицей открылась
-        $(byText("Thanks for submitting the form")).shouldBe(Condition.visible, Duration.ofMillis(3000));
+        $(byText("Thanks for submitting the form")).shouldBe(Condition.visible);
 
         //Проверяем данные в таблице
-        $(".table-responsive").$(byText("Zarina Khassanova"));
-        $(".table-responsive").$(byText("test@gmail.com"));
-        $(".table-responsive").$(byText("Female"));
-        $(".table-responsive").$(byText("7707012345"));
-        $(".table-responsive").$(byText("03 July,1984"));
-        $(".table-responsive").$(byText("Computer Science"));
-        $(".table-responsive").$(byText("Sports"));
-        $(".table-responsive").$(byText("octocat3.jpg"));
-        $(".table-responsive").$(byText("Goa, India"));
-        $(".table-responsive").$(byText("Haryana Panipat"));
+        $(".table-responsive").shouldHave(text("Zarina Khassanova"));
+        $(".table-responsive").shouldHave(text("test@gmail.com"));
+        $(".table-responsive").shouldHave(text("Female"));
+        $(".table-responsive").shouldHave(text("7707012345"));
+        $(".table-responsive").shouldHave(text("03 July,1984"));
+        $(".table-responsive").shouldHave(text("Computer Science"));
+        $(".table-responsive").shouldHave(text("Sports"));
+        $(".table-responsive").shouldHave(text("octocat3.jpg"));
+        $(".table-responsive").shouldHave(text("Goa, India"));
+        $(".table-responsive").shouldHave(text("Haryana Panipat"));
 
-        System.out.println("Accepted fill form");
+        System.out.println("Accepted fill form!");
         //endregion
     }
 }
