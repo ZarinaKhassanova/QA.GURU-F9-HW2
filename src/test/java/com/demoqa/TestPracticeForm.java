@@ -21,7 +21,7 @@ public class TestPracticeForm {
     @BeforeAll
     static void settings() {
         System.setProperty("webdriver.chrome.driver","src/tools/chromedriver.exe");
-        Configuration.browserSize = "1440*900";
+        Configuration.browserSize = "1440x900";
     }
 
     @BeforeEach
@@ -82,18 +82,18 @@ public class TestPracticeForm {
         $(byText("Thanks for submitting the form")).shouldBe(Condition.visible);
 
         //Проверяем данные в таблице
-        $(".table-responsive").shouldHave(text("Zarina Khassanova"));
-        $(".table-responsive").shouldHave(text("test@gmail.com"));
-        $(".table-responsive").shouldHave(text("Female"));
-        $(".table-responsive").shouldHave(text("7707012345"));
-        $(".table-responsive").shouldHave(text("03 July,1984"));
-        $(".table-responsive").shouldHave(text("Computer Science"));
-        $(".table-responsive").shouldHave(text("Sports"));
-        $(".table-responsive").shouldHave(text("octocat3.jpg"));
-        $(".table-responsive").shouldHave(text("Goa, India"));
-        $(".table-responsive").shouldHave(text("Haryana Panipat"));
-
-        System.out.println("Accepted fill form!");
+        $(".table-responsive").shouldHave(
+                text("Zarina Khassanova"),
+                text("test@gmail.com"),
+                text("Female"),
+                text("7707012345"),
+                text("03 July,1984"),
+                text("Computer Science"),
+                text("Sports"),
+                text("octocat3.jpg"),
+                text("Goa, India"),
+                text("Haryana Panipat"));
+        System.out.println("Form accepted!");
         //endregion
     }
 }
